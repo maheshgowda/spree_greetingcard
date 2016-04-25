@@ -1,0 +1,20 @@
+<% promotions = @greetingcard.possible_promotions %>
+
+<% if promotions.any? %>
+  <div id="promotions">
+    <h3><%= Spree.t(:promotions) %></h3>
+    <% promotions.each do |promotion| %>
+    <div class="well well-sm">
+      <h4><%= promotion.name %></h4>
+      <p><%= promotion.description %></p>
+      <% if promotion.greetingcards.any? %>
+        <ul>
+          <% promotion.greetingcards.each do |greetingcard| %>
+            <li><%= link_to greetingcard.name, greetingcard_path(greetingcard) %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+<% end %>

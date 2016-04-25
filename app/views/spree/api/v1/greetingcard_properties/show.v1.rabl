@@ -1,0 +1,2 @@
+object @greetingcard_property
+attributes *greetingcard_property_attributes

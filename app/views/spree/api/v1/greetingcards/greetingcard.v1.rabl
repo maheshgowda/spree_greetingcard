@@ -1,0 +1,1 @@
+attributes *greetingcard_attributes

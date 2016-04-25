@@ -1,0 +1,76 @@
+<%= form_for :order, url: populate_orders_path do |f| %>
+  <div class="row" id="inside-greetingcard-cart-form" data-hook="inside_greetingcard_cart_form" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+    <% if @greetingcard.variants_and_option_values(current_currency).any? %>
+      <div id="greetingcard-variants" class="col-md-6">
+        <h3 class="greetingcard-section-title"><%= Spree.t(:variants) %></h3>
+        <ul class="list-group">
+          <% @greetingcard.variants_and_option_values(current_currency).each_with_index do |variant, index| %>
+            <li>
+              <%= radio_button_tag "variant_id", variant.id, index == 0,
+                  'data-price' => variant.price_in(current_currency).money, 
+                  'data-in-stock' => variant.can_supply?
+              %>
+              <%= label_tag "variant_id_#{ variant.id }" do %>
+                <span class="variant-description">
+                  <%= variant_options variant %>
+                </span>
+                <% if variant_price variant %>
+                  <span class="price diff"><%= variant_price variant %></span>
+                <% end %>
+                <% unless variant.can_supply? %>
+                  <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
+                <% end %>
+              <% end %>
+            </li>
+          <% end%>
+        </ul>
+      </div>
+    <% else %>
+      <%= hidden_field_tag "variant_id", @greetingcard.master.id %>
+    <% end %>
+
+    <% if @greetingcard.price_in(current_currency) && !@greetingcard.price.nil? %>
+      <div data-hook="greetingcard_price" class="col-md-5">
+        <div id="greetingcard-price">
+          <h6 class="greetingcard-section-title"><%= Spree.t(:price) %></h6>
+          <div>
+            <span class="lead price selling" itemprop="price">
+              <%= display_price(@greetingcard) %>
+            </span>
+            <span itemprop="priceCurrency" content="<%= @greetingcard.currency %>"></span>
+          </div>
+
+          <% if @greetingcard.master.can_supply? %>
+            <link itemprop="availability" href="https://schema.org/InStock" />
+          <% elsif @greetingcard.variants.empty? %>
+            <br />
+            <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
+          <% end %>
+        </div>
+
+        <% if @greetingcard.can_supply? %>
+          <div class="add-to-cart">
+            <br />
+            <div class="input-group">
+              <%= number_field_tag :quantity, 1, class: 'title form-control', min: 1 %>
+              <span class="input-group-btn">
+                <%= button_tag class: 'btn btn-success', id: 'add-to-cart-button', type: :submit do %>
+                  <%= Spree.t(:add_to_cart) %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div id="greetingcard-price">
+        <br />
+        <div>
+          <span class="price selling" itemprop="price">
+            <%= Spree.t('greetingcard_not_available_in_this_currency') %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

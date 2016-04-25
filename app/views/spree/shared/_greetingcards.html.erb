@@ -1,0 +1,48 @@
+<% content_for :head do %>
+  <% if greetingcards.respond_to?(:num_pages) %>
+    <%= rel_next_prev_link_tags greetingcards %>
+  <% end %>
+<% end %>
+
+<div data-hook="greetingcards_search_results_heading">
+  <% if greetingcards.empty? %>
+    <div data-hook="greetingcards_search_results_heading_no_results_found">
+      <%= Spree.t(:no_greetingcards_found) %>
+    </div>
+  <% elsif params.key?(:keywords) %>
+    <div data-hook="greetingcards_search_results_heading_results_found">
+      <h6 class="search-results-title"><%= Spree.t(:search_results, keywords: h(params[:keywords])) %></h6>
+    </div>
+  <% end %>
+</div>
+
+<% if greetingcards.any? %>
+  <div id="greetingcards" class="row" data-hook>
+    <% greetingcards.each do |greetingcard| %>
+      <% url = spree.greetingcard_url(greetingcard, taxon_id: @taxon.try(:id)) %>
+      <div id="greetingcard_<%= greetingcard.id %>" class="col-md-3 col-sm-6 col-xs-6 greetingcard-list-item" data-hook="greetingcards_list_item" itemscope>                          
+        <div class="panel panel-default">
+          <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, greetingcard] : cache_key_for_greetingcard(greetingcard)) do %>
+            <div class="panel-body text-center greetingcard-body">
+              <%= link_to url, itemprop: "url" do %>
+                <%= small_image(greetingcard, itemprop: "image") %><br/>
+                <%= content_tag(:span, truncate(greetingcard.name, length: 50), class: 'info', itemprop: "name", title: greetingcard.name) %>
+              <% end %>
+              <br/>
+            </div>
+            <div class="panel-footer text-center">
+              <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <span class="price selling lead" itemprop="price"><%= display_price(greetingcard) %></span>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <% reset_cycle("classes") %>
+  </div>
+<% end %>
+
+<% if greetingcards.respond_to?(:num_pages) %>
+  <%= paginate greetingcards, theme: 'twitter-bootstrap-3' %>
+<% end %>

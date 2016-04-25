@@ -1,0 +1,19 @@
+<%# no need for thumbnails unless there is more than one image %>
+<% if (@greetingcard.images + @greetingcard.variant_images).uniq.size > 1 %>
+  <ul id="greetingcard-thumbnails" class="thumbnails list-inline" data-hook>
+    <% @greetingcard.images.each do |i| %>
+      <li class='tmb-all tmb-<%= i.viewable.id %>'>
+        <%= link_to(image_tag(i.attachment.url(:mini), class: "thumbnail"), i.attachment.url(:greetingcard)) %>
+      </li>
+    <% end %>
+
+    <% if @greetingcard.has_variants? %>
+      <% @greetingcard.variant_images.each do |i| %>
+        <% next if @greetingcard.images.include?(i) %>
+        <li class='vtmb tmb-<%= i.viewable.id %>'>
+          <%= link_to(image_tag(i.attachment.url(:mini), class: "thumbnail"), i.attachment.url(:greetingcard)) %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

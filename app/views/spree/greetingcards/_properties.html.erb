@@ -1,0 +1,15 @@
+<% unless @greetingcard_properties.empty? %>  
+  <h3 class="greetingcard-section-title"><%= Spree.t('properties')%></h3>
+  <table id="greetingcard-properties" class="table table-striped" data-hook>
+    <tbody>
+      <% @greetingcard_properties.each do |greetingcard_property| %>
+        <% css_class = cycle('even', 'odd', :name => "properties") %>
+        <tr class="<%= css_class %>">
+          <td><strong><%= greetingcard_property.property.presentation %></strong></td>
+          <td><%= greetingcard_property.value %></td>
+        </tr>
+      <% end %>
+      <% reset_cycle('properties') %>
+    </tbody>
+  </table>
+<% end %>

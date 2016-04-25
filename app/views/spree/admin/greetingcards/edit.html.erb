@@ -1,0 +1,16 @@
+<% content_for :page_actions do %>
+  <% if can?(:create, Spree::Greetingcard) %>
+    <%= button_link_to Spree.t(:new_greetingcard), new_object_url, { class: "btn-success", icon: 'add', id: 'admin_new_greetingcard' } %>
+  <% end %>
+  <%= back_to_list_button(Spree::Greetingcard.model_name.human, admin_greetingcards_path) %>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/greetingcard_tabs', locals: {current: :details} %>
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @greetingcard } %>
+
+<%= form_for [:admin, @greetingcard], method: :put, html: { multipart: true } do |f| %>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>
