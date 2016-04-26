@@ -17,7 +17,6 @@
 # All other variants have option values and may have inventory units.
 # Sum of on_hand each variant's inventory level determine "on_hand" level for the greetingcard.
 #
-
 module Spree
   class Greetingcard < Spree::Base
     extend FriendlyId

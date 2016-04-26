@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422132106) do
+ActiveRecord::Schema.define(version: 20160425104211) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
@@ -187,6 +187,8 @@ ActiveRecord::Schema.define(version: 20160422132106) do
   end
 
   add_index "spree_greetingcard_properties", ["greetingcard_id"], name: "index_greetingcard_properties_on_greetingcard_id", using: :btree
+  add_index "spree_greetingcard_properties", ["position"], name: "index_spree_greetingcard_properties_on_position", using: :btree
+  add_index "spree_greetingcard_properties", ["property_id"], name: "index_spree_greetingcard_properties_on_property_id", using: :btree
 
   create_table "spree_greetingcards", force: :cascade do |t|
     t.string   "name",                 limit: 255,   default: "",   null: false

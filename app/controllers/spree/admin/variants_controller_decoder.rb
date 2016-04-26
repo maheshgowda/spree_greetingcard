@@ -1,5 +1,7 @@
 Spree::Admin::VariantsController.class_eval do
       belongs_to 'spree/product', :find_by => :slug
+      belongs_to 'spree/greetingcard', :find_by => :slug
+      
       new_action.before :new_before
       before_action :load_data, only: [:new, :create, :edit, :update]
 

@@ -1,4 +1,5 @@
-Spree::Variant.class_eval do
+module Spree
+ class Variant < Spree::Base
     acts_as_paranoid
     acts_as_list scope: :product
     acts_as_list scope: :greetingcard
@@ -6,7 +7,7 @@ Spree::Variant.class_eval do
     include Spree::DefaultPrice
 
     belongs_to :product, touch: true, class_name: 'Spree::Product', inverse_of: :variants
-    belongs_to :greetingcard, touch: true, class_name: 'Spree::Greetingcard', inverse_of: :variants
+    belongs_to :greetingcard, touch: true, class_name: 'Spree::Greetingcard'
     belongs_to :tax_category, class_name: 'Spree::TaxCategory'
 
     delegate_belongs_to :product, :name, :description, :slug, :available_on,
@@ -328,4 +329,5 @@ Spree::Variant.class_eval do
     def clear_in_stock_cache
       Rails.cache.delete(in_stock_cache_key)
     end
+ end
 end
