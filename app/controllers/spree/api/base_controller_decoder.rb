@@ -144,15 +144,15 @@ Spree::Api::BaseController.class_eval do
         scope
       end
       
-      def find_greetingcardt(id)
-        greetingcardt_scope.friendly.find(id.to_s)
+      def find_greetingcard(id)
+        greetingcard_scope.friendly.find(id.to_s)
       rescue ActiveRecord::RecordNotFound
-        greetingcardt_scope.find(id)
+        greetingcard_scope.find(id)
       end
 
-      def greetingcardt_scope
+      def greetingcard_scope
         if @current_user_roles.include?("admin")
-          scope = Greetingcardt.with_deleted.accessible_by(current_ability, :read).includes(*greetingcardt_includes)
+          scope = Greetingcard.with_deleted.accessible_by(current_ability, :read).includes(*greetingcard_includes)
 
           unless params[:show_deleted]
             scope = scope.not_deleted
@@ -161,7 +161,7 @@ Spree::Api::BaseController.class_eval do
             scope = scope.not_discontinued
           end
         else
-          scope = Greetingcardt.accessible_by(current_ability, :read).active.includes(*greetingcardt_includes)
+          scope = Greetingcard.accessible_by(current_ability, :read).active.includes(*greetingcard_includes)
         end
 
         scope
@@ -175,8 +175,8 @@ Spree::Api::BaseController.class_eval do
         [:option_types, :taxons, product_properties: :property, variants: variants_associations, master: variants_associations]
       end
       
-      def greetingcardt_includes
-        [:option_types, :taxons, greetingcardt_properties: :property, variants: variants_associations, master: variants_associations]
+      def greetingcard_includes
+        [:option_types, :taxons, greetingcard_properties: :property, variants: variants_associations, master: variants_associations]
       end
 
       def order_id

@@ -226,7 +226,7 @@ module Spree
     # which would make AR's default finder return nil.
     # This is a stopgap for that little problem.
     def master
-      #super || variants_including_master.with_deleted.find_by(is_master: true)
+      super || variants_including_master.with_deleted.find_by(is_master: true)
     end
 
     private
@@ -340,7 +340,7 @@ module Spree
     end
 
     def taxon_and_ancestors
-      taxons.map(&:self_and_ancestors).flatten.uniq
+      #taxons.map(&:self_and_ancestors).flatten.uniq
     end
 
     # Get the taxonomy ids of all taxons assigned to this greetingcard and their ancestors.
@@ -350,8 +350,8 @@ module Spree
 
     # Iterate through this greetingcards taxons and taxonomies and touch their timestamps in a batch
     def touch_taxons
-      Spree::Taxon.where(id: taxon_and_ancestors.map(&:id)).update_all(updated_at: Time.current)
-      Spree::Taxonomy.where(id: taxonomy_ids).update_all(updated_at: Time.current)
+      #Spree::Taxon.where(id: taxon_and_ancestors.map(&:id)).update_all(updated_at: Time.current)
+      #Spree::Taxonomy.where(id: taxonomy_ids).update_all(updated_at: Time.current)
     end
 
     def remove_taxon(taxon)

@@ -27,12 +27,12 @@
         </div>
       <% end %>
 
-      <div data-hook="new_greetingcard_prototype" class="col-md-4">
-        <%= f.field_container :prototype, :class => ['form-group'] do %>
-          <%= f.label :prototype_id, Spree.t(:prototype) %>
-          <%= f.collection_select :prototype_id, Spree::Prototype.all, :id, :name, {:include_blank => true}, {:class => 'select2'} %>
-        <% end %>
-      </div>
+     <!-- <div data-hook="new_greetingcard_prototype" class="col-md-4">
+        <%#= f.field_container :prototype, :class => ['form-group'] do %>
+          <%#= f.label :prototype_id, Spree.t(:prototype) %>
+          <%#= f.collection_select :prototype_id, Spree::Prototype.all, :id, :name, {:include_blank => true}, {:class => 'select2'} %>
+        <%# end %>
+      </div>-->
 
       <div data-hook="new_greetingcard_price" class="col-md-4">
         <%= f.field_container :price, :class => ['form-group'] do %>

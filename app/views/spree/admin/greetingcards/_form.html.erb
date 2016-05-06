@@ -1,9 +1,8 @@
-
 <div data-hook="admin_greetingcard_form_fields">
 
   <div class="row">
 
-    <div class="col-md-8" data-hook="admin_greetingcard_form_left">
+    <div class="col-md-8" style="width:500px;" data-hook="admin_greetingcard_form_left">
       <div data-hook="admin_greetingcard_form_name">
         <%= f.field_container :name, class: ['form-group'] do %>
           <%= f.label :name, raw(Spree.t(:name) + content_tag(:span, ' *', class: 'required')) %>
@@ -20,13 +19,15 @@
         <% end %>
       </div>
 
-      <div data-hook="admin_greetingcard_form_description">
-        <%= f.field_container :description, class: ['form-group'] do %>
-          <%= f.label :description, Spree.t(:description) %>
-          <%= f.text_area :description, { rows: "#{unless @greetingcard.has_variants? then '20' else '13' end}", class: 'form-control' } %>
-          <%= f.error_message_on :description %>
-        <% end %>
-      </div>
+      <!--<div data-hook="admin_greetingcard_form_description">
+        <%#= f.field_container :description, class: ['form-group'] do %>
+          <%#= f.label :description, Spree.t(:description) %>
+          <%#= f.text_area :description, { rows: "#{unless @greetingcard.has_variants? then '20' else '13' end}", class: 'form-control' } %>
+          <%#= f.error_message_on :description %>
+        <%# end %>
+      </div>-->
+      
+      
     </div>
 
     <div class="col-md-4" data-hook="admin_greetingcard_form_right">
@@ -107,35 +108,35 @@
           <% end %>
         </div>
 
-        <div id="shipping_specs" class="row">
+       <!--<div id="shipping_specs" class="row">
           <div class="col-md-6">
             <div id="shipping_specs_weight_field" data-hook="admin_greetingcard_form_weight" class="form-group">
-              <%= f.label :weight, Spree.t(:weight) %>
-              <%= f.text_field :weight, size: 4, class: 'form-control' %>
+              <%#= f.label :weight, Spree.t(:weight) %>
+              <%#= f.text_field :weight, size: 4, class: 'form-control' %>
             </div>
-          </div>
+          </div>-->
 
-          <div class="col-md-6">
+          <!--<div class="col-md-6">
             <div id="shipping_specs_height_field" data-hook="admin_greetingcard_form_height" class="form-group">
-              <%= f.label :height, Spree.t(:height) %>
-              <%= f.text_field :height, size: 4, class: 'form-control' %>
+              <%#= f.label :height, Spree.t(:height) %>
+              <%#= f.text_field :height, size: 4, class: 'form-control' %>
             </div>
-          </div>
+          </div>-->
 
-          <div class="col-md-6">
+          <!--<div class="col-md-6">
             <div id="shipping_specs_width_field" data-hook="admin_greetingcard_form_width" class="form-group">
-              <%= f.label :width, Spree.t(:width) %>
-              <%= f.text_field :width, size: 4, class: 'form-control' %>
+              <%#= f.label :width, Spree.t(:width) %>
+              <%#= f.text_field :width, size: 4, class: 'form-control' %>
             </div>
-          </div>
+          </div>-->
 
-          <div class="col-md-6">
+          <!--<div class="col-md-6">
             <div id="shipping_specs_depth_field" data-hook="admin_greetingcard_form_depth" class="form-group">
-              <%= f.label :depth, Spree.t(:depth) %>
-              <%= f.text_field :depth, size: 4, class: 'form-control' %>
+              <%#= f.label :depth, Spree.t(:depth) %>
+              <%#= f.text_field :depth, size: 4, class: 'form-control' %>
             </div>
           </div>
-        </div>
+        </div>-->
       <% end %>
 
       <div data-hook="admin_greetingcard_form_shipping_categories">
@@ -162,7 +163,7 @@
       <%= f.label :taxon_ids, Spree.t(:taxons) %>
 
       <% if can? :modify, Spree::Classification %>
-        <%= f.hidden_field :taxon_ids, value: @greetingcard.taxon_ids.join(',') %>
+        <%#= f.hidden_field :taxon_ids, value: @greetingcard.taxon_ids.join(',') %>
       <% elsif @greetingcard.taxons.any? %>
         <ul class="text_list">
           <% @greetingcard.taxons.each do |taxon| %>

@@ -233,7 +233,7 @@ module Spree
     end
 
     def sku_and_options_text
-      "#{sku} #{options_text}".strip
+     # "#{sku} #{options_text}".strip
     end
 
     def in_stock?
