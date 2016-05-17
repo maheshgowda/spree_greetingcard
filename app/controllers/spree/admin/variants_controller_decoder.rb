@@ -48,7 +48,7 @@ Spree::Admin::VariantsController.class_eval do
             @collection ||= super.includes(:default_price, option_values: :option_type)
           else
             @collection ||= Variant.only_deleted.where(product_id: parent.id)
-            @collection ||= Variant.only_deleted.where(greetingcard_id: parent.id)
+            #@collection ||= Variant.only_deleted.where(greetingcard_id: parent.id)
           end
           @collection
         end

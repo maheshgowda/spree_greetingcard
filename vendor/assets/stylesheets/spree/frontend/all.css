@@ -8,3 +8,6 @@
  *= require_self
  *= require_tree .
 */
+.product-body {
+  height: 170px;
+}

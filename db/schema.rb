@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425104211) do
+ActiveRecord::Schema.define(version: 20160507105205) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
@@ -191,25 +191,27 @@ ActiveRecord::Schema.define(version: 20160425104211) do
   add_index "spree_greetingcard_properties", ["property_id"], name: "index_spree_greetingcard_properties_on_property_id", using: :btree
 
   create_table "spree_greetingcards", force: :cascade do |t|
-    t.string   "name",                 limit: 255,   default: "",   null: false
-    t.text     "description",          limit: 65535
+    t.string   "name",                              limit: 255,   default: "",   null: false
+    t.text     "description",                       limit: 65535
     t.datetime "available_on"
-    t.datetime "discontinue_on"
     t.datetime "deleted_at"
-    t.string   "slug",                 limit: 255
-    t.text     "meta_description",     limit: 65535
-    t.string   "meta_keywords",        limit: 255
-    t.integer  "tax_category_id",      limit: 4
-    t.integer  "shipping_category_id", limit: 4
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.boolean  "promotionable",                      default: true
-    t.string   "meta_title",           limit: 255
+    t.string   "slug",                              limit: 255
+    t.text     "meta_description",                  limit: 65535
+    t.string   "meta_keywords",                     limit: 255
+    t.integer  "tax_category_id",                   limit: 4
+    t.integer  "shipping_category_id",              limit: 4
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
+    t.boolean  "promotionable",                                   default: true
+    t.string   "meta_title",                        limit: 255
+    t.string   "greetingcard_picture_file_name",    limit: 255
+    t.string   "greetingcard_picture_content_type", limit: 255
+    t.integer  "greetingcard_picture_file_size",    limit: 4
+    t.datetime "greetingcard_picture_updated_at"
   end
 
   add_index "spree_greetingcards", ["available_on"], name: "index_spree_greetingcards_on_available_on", using: :btree
   add_index "spree_greetingcards", ["deleted_at"], name: "index_spree_greetingcards_on_deleted_at", using: :btree
-  add_index "spree_greetingcards", ["discontinue_on"], name: "index_spree_greetingcards_on_discontinue_on", using: :btree
   add_index "spree_greetingcards", ["name"], name: "index_spree_greetingcards_on_name", using: :btree
   add_index "spree_greetingcards", ["shipping_category_id"], name: "index_spree_greetingcards_on_shipping_category_id", using: :btree
   add_index "spree_greetingcards", ["slug"], name: "index_spree_greetingcards_on_slug", unique: true, using: :btree

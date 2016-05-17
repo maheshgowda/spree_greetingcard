@@ -1,5 +1,0 @@
-<% if defined?(image) && image %>
-  <%= image_tag image.attachment.url(:greetingcard), :itemprop => "image" %>
-<% else %>
-  <%= greetingcard_image(@greetingcard, :itemprop => "image") %>
-<% end %>

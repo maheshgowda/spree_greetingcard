@@ -23,7 +23,10 @@ module Spree
     friendly_id :slug_candidates, use: :history
 
     acts_as_paranoid
-
+    
+    has_attached_file :greetingcard_picture, dependent: :destroy, :styles => {:gretingcard => "240x240>", :thumb => "100x100>", :min => "50x50>", :large => "600x600>"}, default_style: :greetingcard, :path => ":rails_root/public/assets/greetingcard_pictures/:style/:filename", :url => "/assets/greetingcard_pictures/:style/:filename"
+    validates_attachment_content_type :greetingcard_picture, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+    
     has_many :greetingcard_option_types, dependent: :destroy, inverse_of: :greetingcard
     has_many :option_types, through: :greetingcard_option_types
     has_many :greetingcard_properties, dependent: :destroy, inverse_of: :greetingcard
@@ -68,11 +71,11 @@ module Spree
     has_many :orders, through: :line_items
 
     delegate_belongs_to :master, :sku, :price, :currency, :display_amount, :display_price, :weight, :height, :width, :depth,
-                        :is_master, :has_default_price?, :cost_currency, :price_in, :amount_in, :cost_price, :images
+                        :is_master, :has_default_price?, :cost_currency, :price_in, :amount_in, :cost_price#, :images
 
-    alias_method :master_images, :images
+    #alias_method :master_images, :images
 
-    has_many :variant_images, -> { order(:position) }, source: :images, through: :variants_including_master
+    #has_many :variant_images, -> { order(:position) }, source: :images, through: :variants_including_master
 
     after_create :add_associations_from_prototype
     after_create :build_variants_from_option_values_hash, if: :option_values_hash
@@ -161,7 +164,7 @@ module Spree
     end
 
     def discontinued?
-      !!discontinue_on && discontinue_on <= Time.current
+     # !!discontinue_on && discontinue_on <= Time.current
     end
 
     # determine if any variant (including master) can be supplied

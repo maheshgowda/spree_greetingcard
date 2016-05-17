@@ -19,11 +19,11 @@
       <% @variants.each do |variant| %>
         <% if variant.stock_items.present? %>
           <tr id="<%= spree_dom_id variant %>" data-hook="admin_greetingcard_stock_management_index_rows">
-            <td class="image text-center">
-              <% if variant.images.present? %>
-                <%= image_tag variant.images.first.attachment.url(:mini) %>
-              <% end %>
-            </td>
+            <!--<td class="image text-center">
+              <%# if variant.images.present? %>
+                <%#= image_tag variant.images.first.attachment.url(:mini) %>
+              <%# end %>
+            </td>-->
             <td>
               <%= variant.sku_and_options_text %>
               <%= form_tag admin_greetingcard_variants_including_master_path(@greetingcard, variant, format: :js), method: :put, class: 'toggle_variant_track_inventory' do %>

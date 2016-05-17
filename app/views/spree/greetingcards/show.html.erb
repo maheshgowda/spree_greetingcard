@@ -1,26 +1,26 @@
 <% @body_id = 'greetingcard-details' %>
 
-<%# cache cache_key_for_greetingcard do %>
- <!-- <div data-hook="greetingcard_show" class="row" itemscope itemtype="https://schema.org/Greetingcard">
+<% cache cache_key_for_greetingcard do %>
+  <div data-hook="greetingcard_show" class="row" itemscope itemtype="https://schema.org/Greetingcard">
     <div class="col-md-4 col-sm-5" data-hook="greetingcard_left_part">
       <div data-hook="greetingcard_left_part_wrap">
         <div id="greetingcard-images" data-hook="greetingcard_images">
           <div id="main-image" class="panel panel-default" data-hook>
             <div class="panel-body text-center">
-              <%#= render :partial => 'image' %>
+              <%= render :partial => 'image' %>
             </div>
           </div>
-          <div id="thumbnails" data-hook>
+          <!--<div id="thumbnails" data-hook>
             <%#= render :partial => 'thumbnails' %>
-          </div>
+          </div>-->
         </div>
 
         <div data-hook="greetingcard_properties">
-          <%#= render :partial => 'properties' %>
+          <%= render :partial => 'properties' %>
         </div>
 
         <div data-hook="promotions">
-          <%#= render :partial => 'promotions' %>
+          <%= render :partial => 'promotions' %>
         </div>
       </div>
     </div>
@@ -30,19 +30,19 @@
         <div id="greetingcard-description" data-hook="greetingcard_description">
           <h1 class="greetingcard-title" itemprop="name"><%= @greetingcard.name %></h1>
 
-          <div class="well" itemprop="description" data-hook="description">
-            <%= greetingcard_description(@greetingcard) %>
-          </div>
+         <!--<div class="well" itemprop="description" data-hook="description">
+            <%#= greetingcard_description(@greetingcard) %>
+          </div>-->
 
           <div id="cart-form" data-hook="cart_form">
-            <%#= render :partial => 'cart_form' %>
+            <%= render :partial => 'cart_form' %>
           </div>
         </div>
 
         <div id="taxon-crumbs" class=" five " data-hook="greetingcard_taxons">
-          <%#= render :partial => 'taxons' %>
+          <%= render :partial => 'taxons' %>
         </div>
       </div>
     </div>
-  </div> -->
-<%# end %>
+  </div> 
+<% end %>

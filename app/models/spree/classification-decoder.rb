@@ -10,6 +10,7 @@ Spree::Classification.class_eval do
     end
 
     validates :taxon, :product, :greetingcard, presence: true
+    validates :taxon, :greetingcard, presence: true
     # For #3494
     validates :taxon_id, uniqueness: { scope: :product_id, message: :already_linked, allow_blank: true }
     validates :taxon_id, uniqueness: { scope: :greetingcard_id, message: :already_linked, allow_blank: true }

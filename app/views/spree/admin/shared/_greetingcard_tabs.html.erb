@@ -8,9 +8,9 @@
     <%= content_tag :li, class: ('active' if current == :details) do %>
       <%= link_to_with_icon 'edit', Spree.t(:details), edit_admin_greetingcard_url(@greetingcard) %>
     <% end if can?(:admin, Spree::Greetingcard) %>
-    <%= content_tag :li, class: ('active' if current == :images) do %>
-      <%= link_to_with_icon 'picture', Spree.t(:images), spree.admin_greetingcard_images_url(@greetingcard) %>
-    <% end if can?(:admin, Spree::Image) %>
+    <%#= content_tag :li, class: ('active' if current == :images) do %>
+      <%#= link_to_with_icon 'picture', Spree.t(:images), spree.admin_greetingcard_images_url(@greetingcard) %>
+    <%# end if can?(:admin, Spree::Image) %>
     <%= content_tag :li, class: ('active' if current == :variants) do %>
       <%= link_to_with_icon 'th-large', Spree.t(:variants),  spree.admin_greetingcard_variants_url(@greetingcard) %>
     <% end if can?(:admin, Spree::Variant) %>

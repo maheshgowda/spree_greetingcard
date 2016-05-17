@@ -69,8 +69,8 @@
           <tr <%== "style='color: red;'" if greetingcard.deleted? %> id="<%= spree_dom_id greetingcard %>" data-hook="admin_greetingcards_index_rows" class="<%= cycle('odd', 'even') %>">
             <td class="sku"><%= greetingcard.sku rescue '' %></td>
             <td class="status"><%= available_status(greetingcard) %> </td>
-            <td class="image"><%= mini_image greetingcard %></td>
             <td><%= link_to greetingcard.try(:name), edit_admin_greetingcard_path(greetingcard) %></td>
+            <td class="image"><%= image_tag greetingcard.greetingcard_picture.url(:min) %></td>
             <td class="text-center"><%= greetingcard.display_price.to_html rescue '' %></td>
             <td class="actions actions-3 text-right" data-hook="admin_greetingcards_index_row_actions">
               <%= link_to_edit greetingcard, no_text: true, class: 'edit' if can?(:edit, greetingcard) && !greetingcard.deleted? %>

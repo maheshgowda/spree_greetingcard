@@ -10,6 +10,8 @@
 # In order to initialize a setting do:
 # config.setting_name = 'new value'
 Spree.config do |config|
+  
+  #Spree::PermittedAttributes.greetingcard_attributes << :greetingcard_picture
   # Example:
   # Uncomment to stop tracking inventory levels in the application
   # config.track_inventory_levels = false

@@ -22,10 +22,11 @@
       <% url = spree.greetingcard_url(greetingcard, taxon_id: @taxon.try(:id)) %>
       <div id="greetingcard_<%= greetingcard.id %>" class="col-md-3 col-sm-6 col-xs-6 greetingcard-list-item" data-hook="greetingcards_list_item" itemscope>                          
         <div class="panel panel-default">
-          <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, greetingcard] : cache_key_for_greetingcard(greetingcard)) do %>
+          <%# cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, greetingcard] : cache_key_for_greetingcard(greetingcard)) do %>
             <div class="panel-body text-center greetingcard-body">
               <%= link_to url, itemprop: "url" do %>
-                <%= small_image(greetingcard, itemprop: "image") %><br/>
+                <%#= small_image(greetingcard, itemprop: "image") %><br/>
+                <%= image_tag(greetingcard.greetingcard_picture(:thumb), itemprop: "image") %><br/>
                 <%= content_tag(:span, truncate(greetingcard.name, length: 50), class: 'info', itemprop: "name", title: greetingcard.name) %>
               <% end %>
               <br/>
@@ -35,7 +36,7 @@
                 <span class="price selling lead" itemprop="price"><%= display_price(greetingcard) %></span>
               </span>
             </div>
-          <% end %>
+          <%# end %>
         </div>
       </div>
     <% end %>

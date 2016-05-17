@@ -21,7 +21,7 @@
 <% else %>
   <div data-hook="homepage_greetingcards">
     <%# cache(cache_key_for_greetingcards) do %>
-      <%#= render :partial => 'spree/shared/greetingcards', :locals => { :greetingcards => @greetingcards, :taxon => @taxon } %>
+      <%= render :partial => 'spree/shared/greetingcards', :locals => { :greetingcards => @greetingcards, :taxon => @taxon } %>
     <%# end %>
   </div>
 <% end %>

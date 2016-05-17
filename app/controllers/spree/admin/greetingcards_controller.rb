@@ -139,7 +139,7 @@ module Spree
       end
 
       def greetingcard_includes
-        [{ variants: [:images], master: [:images, :default_price] }]
+       # [{ variants: [:images], master: [:images, :default_price] }]
       end
 
       def clone_object_url(resource)
@@ -149,7 +149,8 @@ module Spree
       private
 
       def variant_stock_includes
-        [:images, stock_items: :stock_location, option_values: :option_type]
+        #[:images, stock_items: :stock_location, option_values: :option_type]
+        [stock_items: :stock_location, option_values: :option_type]
       end
     end
   end
