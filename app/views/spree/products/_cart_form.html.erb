@@ -1,33 +1,33 @@
 <%= form_for :order, url: populate_orders_path do |f| %>
   <div class="row" id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-    <% if @product.variants_and_option_values(current_currency).any? %>
+    <%# if @product.variants_and_option_values(current_currency).any? %>
       <div id="product-variants" class="col-md-6">
         <h3 class="product-section-title"><%= Spree.t(:variants) %></h3>
         <ul class="list-group">
-          <% @product.variants_and_option_values(current_currency).each_with_index do |variant, index| %>
-            <li>
-              <%= radio_button_tag "variant_id", variant.id, index == 0,
+          <%# @product.variants_and_option_values(current_currency).each_with_index do |variant, index| %>
+            <!--<li>
+              <%#= radio_button_tag "variant_id", variant.id, index == 0,
                   'data-price' => variant.price_in(current_currency).money, 
                   'data-in-stock' => variant.can_supply?
               %>
-              <%= label_tag "variant_id_#{ variant.id }" do %>
+              <%#= label_tag "variant_id_#{ variant.id }" do %>
                 <span class="variant-description">
-                  <%= variant_options variant %>
+                  <%#= variant_options variant %>
                 </span>
-                <% if variant_price variant %>
-                  <span class="price diff"><%= variant_price variant %></span>
-                <% end %>
-                <% unless variant.can_supply? %>
-                  <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
-                <% end %>
-              <% end %>
-            </li>
-          <% end%>
+                <%# if variant_price variant %>
+                  <span class="price diff"><%#= variant_price variant %></span>
+                <%# end %>
+                <%# unless variant.can_supply? %>
+                  <span class="out-of-stock"><%#= Spree.t(:out_of_stock) %></span>
+                <%# end %>
+              <%# end %>
+            </li>-->
+          <%# end%>
         </ul>
       </div>
-    <% else %>
+    <%# else %>
       <%= hidden_field_tag "variant_id", @product.master.id %>
-    <% end %>
+    <%# end %>
 
     <% if @product.price_in(current_currency) && !@product.price.nil? %>
       <div data-hook="product_price" class="col-md-5">

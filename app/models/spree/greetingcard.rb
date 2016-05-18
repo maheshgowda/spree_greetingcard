@@ -24,7 +24,7 @@ module Spree
 
     acts_as_paranoid
     
-    has_attached_file :greetingcard_picture, dependent: :destroy, :styles => {:gretingcard => "240x240>", :thumb => "100x100>", :min => "50x50>", :large => "600x600>"}, default_style: :greetingcard, :path => ":rails_root/public/assets/greetingcard_pictures/:style/:filename", :url => "/assets/greetingcard_pictures/:style/:filename"
+    has_attached_file :greetingcard_picture, dependent: :destroy, :styles => {:greetingcard => "240x240>", :thumb => "100x100>", :min => "50x50>", :large => "600x600>"}, default_style: :greetingcard, :path => ":rails_root/public/assets/greetingcard_pictures/:style/:filename", :url => "/assets/greetingcard_pictures/:style/:filename"
     validates_attachment_content_type :greetingcard_picture, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
     
     has_many :greetingcard_option_types, dependent: :destroy, inverse_of: :greetingcard
